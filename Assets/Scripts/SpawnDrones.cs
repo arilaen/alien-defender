@@ -4,11 +4,12 @@ using System.Collections;
 public class SpawnDrones : MonoBehaviour {
 	public GameObject drone;
 	public Transform[] spawnPoints;
+	public GameObject gameController;
 
-	void onTriggerEnter (Collider col) {
-		Debug.Log ("Trigger!");
-		if (col.CompareTag("Player")) {
+	void OnTriggerEnter (Collider col) {
+		if (col.gameObject.name == "Player") {
 			Spawn ();
+			gameController.GetComponent<GameController>().IncreaseDroneCount (spawnPoints.Length);
 			Destroy (gameObject);
 		}
 	}

@@ -3,13 +3,9 @@ using System.Collections;
 
 public class GameController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	public int droneCount = 0;
+
+	public void IncreaseDroneCount (int numDrones) {
+		droneCount += numDrones;
 	}
 }
