@@ -26,7 +26,6 @@ public class Spawner : MonoBehaviour {
 
 	void Spawn ()
 	{
-		Debug.Log (spawnPoints.Length);
 		GameObject spawnee = spawnees [Random.Range (0, spawnees.Length - 1)];
 		for (int i = 0; i < spawnPoints.Length; i++) {
 			Instantiate (spawnee, spawnPoints[i].position, spawnPoints[i].rotation);
