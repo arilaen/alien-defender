@@ -29,6 +29,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 401106}
   - 212: {fileID: 21214158}
+  - 95: {fileID: 9584640}
   m_Layer: 0
   m_Name: humantemp
   m_TagString: Untagged
@@ -121,6 +122,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &9584640
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 195508}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a25d37c6a7fea4d039805c14cf268aff, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11417530
 MonoBehaviour:
   m_ObjectHideFlags: 1
