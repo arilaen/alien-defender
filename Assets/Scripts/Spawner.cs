@@ -6,10 +6,9 @@ public class Spawner : MonoBehaviour {
 	public GameObject spawnee;
 	public Transform[] spawnPoints;
 	public float spawnDelay = 2f;
-	public float spawnRate = 5f;
+	public float spawnRate = 4f;
 	public float timeLimit = 16f;
-	
-	// Update is called once per frame
+
 	void Start () {
 		StartCoroutine ("SpawnRoutine");
 	}
@@ -27,6 +26,7 @@ public class Spawner : MonoBehaviour {
 
 	void Spawn ()
 	{
+		Debug.Log (spawnPoints.Length);
 		for (int i = 0; i < spawnPoints.Length; i++) {
 			Instantiate (spawnee, spawnPoints[i].position, spawnPoints[i].rotation);
 		}

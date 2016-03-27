@@ -113,7 +113,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnee: {fileID: 114540, guid: 95f76ff6d0f0544e3a29cbfc3fdcbc68, type: 2}
-  spawnPoints: []
+  spawnPoints:
+  - {fileID: 88671943}
+  - {fileID: 93272179}
+  - {fileID: 1880489849}
+  - {fileID: 1196355812}
+  - {fileID: 214008046}
   spawnDelay: 2
   spawnRate: 5
   timeLimit: 11
@@ -478,7 +483,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnee: {fileID: 195060, guid: b13f64520836b40efa188fa7ca2adea4, type: 2}
-  spawnPoints: []
+  spawnPoints:
+  - {fileID: 339414056}
   spawnDelay: 2
   spawnRate: 5
   timeLimit: 16
@@ -1609,7 +1615,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnee: {fileID: 106070, guid: 0814d20af4fd1450b8e3dd2967a0f090, type: 2}
-  spawnPoints: []
+  spawnPoints:
+  - {fileID: 173835537}
+  - {fileID: 1866220859}
+  - {fileID: 1526940202}
+  - {fileID: 380700944}
+  - {fileID: 1778512022}
   spawnDelay: 2
   spawnRate: 5
   timeLimit: 16
