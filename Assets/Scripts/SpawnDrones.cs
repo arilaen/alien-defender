@@ -3,21 +3,28 @@ using System.Collections;
 
 public class SpawnDrones : MonoBehaviour {
 	public GameObject drone;
-	public Transform[] spawnPoints;
-	public GameObject gameController;
+	private GameObject gameController;
+	public int numDrones = 10;
+
+	void Awake() {
+		gameController = GameObject.Find ("GameController");
+	}
 
 	void OnTriggerEnter (Collider col) {
-		if (col.gameObject.name == "Player") {
+		if (col.CompareTag("Player")) {
 			Spawn ();
-			gameController.GetComponent<GameController>().IncreaseDroneCount (spawnPoints.Length);
+			gameController.GetComponent<GameController>().IncreaseDroneCount (numDrones);
 			Destroy (gameObject);
 		}
 	}
 
 	void Spawn ()
 	{
-		for (int i = 0; i < spawnPoints.Length; i++) {
-			Instantiate (drone, spawnPoints[i].position, spawnPoints[i].rotation);
+		Vector3 spacing = Random.insideUnitSphere;
+		Vector3 spawnPos = transform.position + spacing;
+		spawnPos.y += 0.5f;
+		for (int i = 0; i < numDrones; i++) {
+			Instantiate (drone, transform.position + spacing, Quaternion.identity);
 		}
 	}
 }

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Attack : MonoBehaviour {
 
-	public int damage;
+	public float damage;
 	public float timeBetweenAttacks;
 	public float enemyAttackRange;
 	public GameObject[] targets;
@@ -16,7 +16,7 @@ public class Attack : MonoBehaviour {
 		selfHealth = GetComponent<Health> ();
 		targetNames = new string[targets.Length];
 		for (int i = 0; i < targets.Length; i++) {
-			targetNames[i] = targets [i].name;
+			targetNames.SetValue(targets [i].name, i);
 		}
 	}
 	
@@ -30,7 +30,11 @@ public class Attack : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider col) {
-		if (System.Array.IndexOf (targetNames, col.gameObject.name) > -1 && timer >= timeBetweenAttacks && selfHealth.currentHealth > 0) {
+		Debug.Log (col.gameObject.name);
+		if (System.Array.IndexOf (targetNames, col.gameObject.name) > -1 ||
+			System.Array.IndexOf (targetNames, col.gameObject.name.Replace("(Clone)", "")) > -1 &&
+			timer >= timeBetweenAttacks && selfHealth.currentHealth > 0) {
+			Debug.Log ("Taking damage!");
 			col.GetComponent<Health>().TakeDamage(damage);
 			timer = 0f;
 			//AttackAudio.play();

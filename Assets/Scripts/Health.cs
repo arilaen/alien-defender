@@ -4,33 +4,35 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour {
-	public int startingHealth;
-	public int currentHealth;
-	public Slider healthSlider;
+	public float startingHealth;
+	public float currentHealth;
+	private Slider healthSlider;
+	private GameObject gameController;
 	//public AudioClip deathClip;
 
-//	Animator anim;
+	Animator anim;
 //	AudioSource playerAudio;
-	//PlayerMovement playerMovement;
+	PlayerMovement playerMovement;
 	//PlayerShooting playerShooting;
 	bool isDead;
 
 	void Awake ()
 	{
-		//anim = GetComponent <Animator> ();
 		//playerAudio = GetComponent <AudioSource> ();
-//		if (isPlayer()) {
-//			playerMovement = GetComponent <PlayerMovement> ();
-//		}
 		//playerShooting = GetComponentInChildren <PlayerShooting> ();
 		currentHealth = startingHealth;
+		gameController = GameObject.Find ("GameController");
+		healthSlider = GameObject.Find ("Slider").GetComponent <Slider> ();
 	}
 
-	public void TakeDamage (int amount)
+	public void TakeDamage (float amount)
 	{
+		Debug.Log ("Damage!" + transform.CompareTag ("Player"));
 		currentHealth -= amount;
 		if (isPlayer()) {
-			healthSlider.value = currentHealth;
+			Debug.Log ("Player hit!");
+			healthSlider.value = currentHealth / startingHealth;
+			anim.SetTrigger ("playerHit");
 		}
 
 		//playerAudio.Play ();
@@ -45,6 +47,9 @@ public class Health : MonoBehaviour {
 		return transform.CompareTag ("Player");
 	}
 
+	bool isHuman() {
+		return transform.CompareTag ("Human");
+	}
 
 	void Death ()
 	{
@@ -56,9 +61,15 @@ public class Health : MonoBehaviour {
 
 		//		playerAudio.clip = deathClip;
 		//		playerAudio.Play ();
-
-//		playerMovement.enabled = false;
-		//playerShooting.enabled = false;
+		if (isPlayer ()) {
+			playerMovement.enabled = false;
+			//playerShooting.enabled = false;
+		} else {
+			if (isHuman ()) {
+				gameController.GetComponent<GameController>().IncreaseDeadHumanCount ();
+			}
+			Destroy (gameObject);
+		}
 	}
 
 

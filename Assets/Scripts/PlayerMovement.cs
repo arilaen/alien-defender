@@ -13,14 +13,13 @@ public class PlayerMovement : MonoBehaviour
 	void Awake()
 	{
 		floorMask = LayerMask.GetMask ("Ground");
-		//anim = GetComponent<Animator> ();
+		anim = GameObject.Find("PlayerSprite").GetComponent<Animator> ();
 		playerRigidbody = GetComponent<Rigidbody> ();
 	}
 
 	void FixedUpdate()
 	{
 		Turning ();
-		//Animating (h, v);
 	}
 	void Move(Vector3 movement)
 	{
@@ -31,22 +30,18 @@ public class PlayerMovement : MonoBehaviour
 	{
 		Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit floorHit;
-		if (Physics.Raycast (camRay, out floorHit, camRayLength, floorMask))
-		{
+		if (Physics.Raycast (camRay, out floorHit, camRayLength, floorMask)) {
 			Vector3 playerToMouse = floorHit.point - transform.position;
 			playerToMouse.y = 0f;
 
 			Quaternion newRotation = Quaternion.LookRotation (playerToMouse);
 			playerRigidbody.MoveRotation (newRotation);
-			if (Input.GetMouseButton(0)) //Move
-			{
+			if (Input.GetMouseButton (0)) { //Move
 				Move (floorHit.point);
+				anim.SetBool ("playerWalking", true);
+			} else {
+				anim.SetBool ("playerWalking", false);
 			}
 		}
 	}
-//	void Animating(float h, float v)
-//	{
-//		bool walking = (h != 0f || v != 0f);
-//		anim.SetBool ("IsWalking", walking);
-//	}
 }

@@ -3,28 +3,47 @@ using System.Collections;
 using System;
 using System.IO;
 
-
 public class HumanWalk : MonoBehaviour {
-	public float moveTime = 0.1f;
-	private Rigidbody rb;
+	private GameObject gameController;
+	public float movementSpeed = 0.5f;
 
-	private float inverseMoveTime; 
-	// Use this for initialization
-	void Start () {
-		inverseMoveTime = 1f / moveTime;
-		rb = GetComponent<Rigidbody> ();
-//		rb.velocity = new Vector3 (0f, 0.1f, 0f);
+	private float timer = 1.5f;
+	private float timeToTurn;
+	private Rigidbody humanRigidBody;
+
+	void Awake() {
+		setTimeToTurn ();
+		humanRigidBody = GetComponent<Rigidbody> ();
+		gameController = GameObject.Find ("GameController");
 	}
-	
+
 	// Update is called once per frame
-	void FixedUpdate () {
-		
-//		Debug.Log (rb.position);
+	void Update () {
+		timer += Time.deltaTime;
 	}
 
-//	bool move(int xDir, int yDir, int zDir){
-//		//TODO: let's do dumb walking for now
-//
-//	}
+	void FixedUpdate() {
+		transform.position += Vector3.forward * Time.deltaTime * movementSpeed;
+		if (Math.Abs(transform.position.x) >= 7 || Math.Abs(transform.position.z) >= 7) {
+			timer = 0f;
+			setTimeToTurn ();
+			humanRigidBody.MoveRotation (Quaternion.LookRotation(-1f * transform.position));
+		} else if (timer > timeToTurn) {
+			timer = 0f;
+			setTimeToTurn ();
+			humanRigidBody.MoveRotation (Quaternion.Euler( 0, UnityEngine.Random.Range(0, 360), 0));
+		}
+	}
+
+	void OnTriggerEnter(Collider col) {
+		if (col.CompareTag ("Player")) {
+			Destroy (gameObject);
+			gameController.GetComponent<GameController>().IncreaseSavedHumanCount ();
+		}
+	}
+
+	void setTimeToTurn() {
+		timeToTurn = UnityEngine.Random.Range (2f, 5f);
+	}
 }
 	
