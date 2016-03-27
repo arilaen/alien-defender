@@ -84,7 +84,7 @@ NavMeshSettings:
     minRegionArea: 2
     cellSize: 0.16666667
     manualCellSize: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 1b68e1fba17374744a14aea26182c7c3, type: 2}
 --- !u!1 &64931390
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,7 +112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d63a21784e0aa44c0b2c93835233e930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnee: {fileID: 114540, guid: 95f76ff6d0f0544e3a29cbfc3fdcbc68, type: 2}
+  spawnees:
+  - {fileID: 114540, guid: 95f76ff6d0f0544e3a29cbfc3fdcbc68, type: 2}
   spawnPoints:
   - {fileID: 88671943}
   - {fileID: 93272179}
@@ -482,7 +483,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d63a21784e0aa44c0b2c93835233e930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnee: {fileID: 195060, guid: b13f64520836b40efa188fa7ca2adea4, type: 2}
+  spawnees:
+  - {fileID: 195060, guid: b13f64520836b40efa188fa7ca2adea4, type: 2}
   spawnPoints:
   - {fileID: 339414056}
   spawnDelay: 2
@@ -572,7 +574,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 0
 --- !u!23 &496087950
 MeshRenderer:
@@ -726,7 +728,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 0
 --- !u!23 &543307490
 MeshRenderer:
@@ -829,7 +831,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!54 &554857942
 Rigidbody:
@@ -1018,7 +1020,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 0
 --- !u!23 &643753397
 MeshRenderer:
@@ -1614,7 +1616,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d63a21784e0aa44c0b2c93835233e930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnee: {fileID: 106070, guid: 0814d20af4fd1450b8e3dd2967a0f090, type: 2}
+  spawnees:
+  - {fileID: 106070, guid: 2eb99d0297bb9499bbc76fcb87a38e47, type: 2}
+  - {fileID: 106070, guid: f8d9a802607434fd5a6d960e35a569ff, type: 2}
+  - {fileID: 106070, guid: b15fa8f645ac94d689a92850f10aa9d7, type: 2}
   spawnPoints:
   - {fileID: 173835537}
   - {fileID: 1866220859}
@@ -1816,7 +1821,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 0
 --- !u!23 &968613713
 MeshRenderer:
@@ -2048,6 +2053,10 @@ Prefab:
     - target: {fileID: 472700, guid: d638ef2ca2fe20c4c9c08e125692d3f4, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.066340335
+      objectReference: {fileID: 0}
+    - target: {fileID: 108544, guid: d638ef2ca2fe20c4c9c08e125692d3f4, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d638ef2ca2fe20c4c9c08e125692d3f4, type: 2}
@@ -2861,7 +2870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d63a21784e0aa44c0b2c93835233e930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnee: {fileID: 0}
+  spawnees: []
   spawnPoints: []
   spawnDelay: 2
   spawnRate: 5
