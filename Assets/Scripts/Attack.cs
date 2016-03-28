@@ -35,9 +35,12 @@ public class Attack : MonoBehaviour {
 		if (System.Array.IndexOf (targetNames, col.gameObject.name) > -1 ||
 			System.Array.IndexOf (targetNames, col.gameObject.name.Replace("(Clone)", "")) > -1 &&
 			timer >= timeBetweenAttacks && selfHealth.currentHealth > 0) {
-			col.GetComponent<Health>().TakeDamage(damage);
-			timer = 0f;
-			audioSource.PlayOneShot (attackClip);
+			Health targetHealth = col.GetComponent<Health> ();
+			if (targetHealth.currentHealth > 0) {
+				targetHealth.TakeDamage (damage);
+				timer = 0f;
+				audioSource.PlayOneShot (attackClip);
+			}
 		}
 	}
 }

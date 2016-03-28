@@ -21,9 +21,9 @@ public class PlayerMovement : MonoBehaviour
 	{
 		Turning ();
 	}
-	void Move(Vector3 movement)
+	void Move()
 	{
-		movement = movement.normalized * speed * Time.deltaTime;
+		movement = transform.forward * speed * (float)Time.deltaTime;
 		playerRigidbody.MovePosition (transform.position + movement);
 	}
 	void Turning()
@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
 			Quaternion newRotation = Quaternion.LookRotation (playerToMouse);
 			playerRigidbody.MoveRotation (newRotation);
 			if (Input.GetMouseButton (0)) { //Move
-				Move (floorHit.point);
+				Move ();
 				anim.SetBool ("playerWalking", true);
 			} else {
 				anim.SetBool ("playerWalking", false);

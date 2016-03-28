@@ -32,18 +32,19 @@ public class Health : MonoBehaviour {
 
 	public void TakeDamage (float amount)
 	{
-		currentHealth -= amount;
-		if (isPlayer()) {
-			healthSlider.value = currentHealth / startingHealth;
-			anim.SetTrigger ("playerHit");
-		}
-		if (hitClip) {
-			audioSource.PlayOneShot (hitClip);
-		}
+		if (!isDead) {
+			currentHealth -= amount;
+			if (isPlayer ()) {
+				healthSlider.value = currentHealth / startingHealth;
+				anim.SetTrigger ("playerHit");
+			}
+			if (hitClip) {
+				audioSource.PlayOneShot (hitClip);
+			}
 
-		if(currentHealth <= 0 && !isDead)
-		{
-			Death ();
+			if (currentHealth <= 0) {
+				Death ();
+			}
 		}
 	}
 
