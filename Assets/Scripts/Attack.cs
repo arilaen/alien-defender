@@ -7,12 +7,14 @@ public class Attack : MonoBehaviour {
 	public float timeBetweenAttacks;
 	public float enemyAttackRange;
 	public GameObject[] targets;
+	public AudioClip attackClip;
 	private Health selfHealth;
 	private float timer = 0f;
 	private string[] targetNames;
-	//attack audio
+	AudioSource audioSource;
 
 	void Awake () {
+		audioSource = GetComponent<AudioSource> ();
 		selfHealth = GetComponent<Health> ();
 		targetNames = new string[targets.Length];
 		for (int i = 0; i < targets.Length; i++) {
@@ -30,14 +32,12 @@ public class Attack : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider col) {
-		Debug.Log (col.gameObject.name);
 		if (System.Array.IndexOf (targetNames, col.gameObject.name) > -1 ||
 			System.Array.IndexOf (targetNames, col.gameObject.name.Replace("(Clone)", "")) > -1 &&
 			timer >= timeBetweenAttacks && selfHealth.currentHealth > 0) {
-			Debug.Log ("Taking damage!");
 			col.GetComponent<Health>().TakeDamage(damage);
 			timer = 0f;
-			//AttackAudio.play();
+			audioSource.PlayOneShot (attackClip);
 		}
 	}
 }

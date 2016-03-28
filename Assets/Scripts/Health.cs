@@ -8,18 +8,23 @@ public class Health : MonoBehaviour {
 	public float currentHealth;
 	private Slider healthSlider;
 	private GameObject gameController;
-	//public AudioClip deathClip;
+	public AudioClip hitClip;
+	public AudioClip deathClip;
+	AudioSource audioSource;
 
 	Animator anim;
-//	AudioSource playerAudio;
 	PlayerMovement playerMovement;
 	//PlayerShooting playerShooting;
 	bool isDead;
 
 	void Awake ()
 	{
-		//playerAudio = GetComponent <AudioSource> ();
+		audioSource = GetComponent <AudioSource> ();
 		//playerShooting = GetComponentInChildren <PlayerShooting> ();
+		if (isPlayer()) {
+			anim = GameObject.Find("PlayerSprite").GetComponent<Animator> ();
+			playerMovement = gameObject.GetComponent<PlayerMovement> ();
+		}
 		currentHealth = startingHealth;
 		gameController = GameObject.Find ("GameController");
 		healthSlider = GameObject.Find ("Slider").GetComponent <Slider> ();
@@ -27,15 +32,14 @@ public class Health : MonoBehaviour {
 
 	public void TakeDamage (float amount)
 	{
-		Debug.Log ("Damage!" + transform.CompareTag ("Player"));
 		currentHealth -= amount;
 		if (isPlayer()) {
-			Debug.Log ("Player hit!");
 			healthSlider.value = currentHealth / startingHealth;
 			anim.SetTrigger ("playerHit");
 		}
-
-		//playerAudio.Play ();
+		if (hitClip) {
+			audioSource.PlayOneShot (hitClip);
+		}
 
 		if(currentHealth <= 0 && !isDead)
 		{
@@ -54,13 +58,13 @@ public class Health : MonoBehaviour {
 	void Death ()
 	{
 		isDead = true;
-
+		if (deathClip) {
+			audioSource.PlayOneShot (deathClip);
+		}
 		//playerShooting.DisableEffects ();
 
 		//anim.SetTrigger ("Die");
 
-		//		playerAudio.clip = deathClip;
-		//		playerAudio.Play ();
 		if (isPlayer ()) {
 			playerMovement.enabled = false;
 			//playerShooting.enabled = false;

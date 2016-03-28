@@ -6,18 +6,20 @@ using System.IO;
 public class HumanWalk : MonoBehaviour {
 	private GameObject gameController;
 	public float movementSpeed = 0.5f;
+	public AudioClip capturedClip;
 
 	private float timer = 1.5f;
 	private float timeToTurn;
 	private Rigidbody humanRigidBody;
+	AudioSource audioSource;
 
 	void Awake() {
 		setTimeToTurn ();
+		audioSource = GetComponent <AudioSource> ();
 		humanRigidBody = GetComponent<Rigidbody> ();
 		gameController = GameObject.Find ("GameController");
 	}
 
-	// Update is called once per frame
 	void Update () {
 		timer += Time.deltaTime;
 	}
@@ -37,6 +39,7 @@ public class HumanWalk : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col) {
 		if (col.CompareTag ("Player")) {
+			audioSource.PlayOneShot (capturedClip);
 			Destroy (gameObject);
 			gameController.GetComponent<GameController>().IncreaseSavedHumanCount ();
 		}
